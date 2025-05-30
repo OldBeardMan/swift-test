@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pytania testowe - Swift/SwiftUI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .options {
+            margin-bottom: 15px;
+        }
+        
+        .option {
+            margin: 8px 0;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .option.correct {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            font-weight: bold;
+        }
+        
+        .option.incorrect {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            opacity: 0.7;
+        }
+        
+        .answer {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+            font-weight: bold;
+        }
+        
+        .explanation {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-left: 4px solid #ffc107;
+            font-style: italic;
+        }
+        
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pytania testowe - Swift/SwiftUI</h1>
+        
+        <div class="question">
+            <div class="question-number">1.</div>
+            <div class="question-text">Dana jest struktura:</div>
+            <div class="code-block">struct Person{
+    var firstname: String
+    var lastname: String
+    var year: Int
+}</div>
+            <div class="question-text">Wskaż poprawne instrukcje do wyświetlenia elementów tablicy (persons), której elementy są typu Person:</div>
+            <div class="options">
+                <div class="option incorrect">a. ForEach(0..<persons.count) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: $persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option incorrect">b. ForEach(persons.indices) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: $persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">c. ForEach(0..<persons.count) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">d. ForEach(persons.indices) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+            </div>
+            <div class="answer">Odpowiedź: C, D</div>
+            <div class="explanation">Opcje a i b są niepoprawne z powodu użycia $persons[i], które sugeruje binding, co w kontekście wyświetlania elementów tablicy zazwyczaj nie jest konieczne.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">2.</div>
+            <div class="question-text">Wskaż poprawne stwierdzenia dotyczące obserwowalnych obiektów:</div>
+            <div class="options">
+                <div class="option incorrect">a. Do właściwości @ObservedObject nie jest przypisywana wartość, ale do @EnvironmentObject jest zawsze przypisywana wartość</div>
+                <div class="option correct">b. Zgodność z protokołem ObservableObject umożliwia używanie instancji tej klasy wewnątrz widoków, dzięki czemu w przypadku wystąpienia ważnych zmian widok zostanie ponownie załadowany</div>
+                <div class="option correct">c. Inicjalizacja obiektu obserwowalnego wykonywana jest za pomocą @StateObject</div>
+                <div class="option correct">d. @EnvironmentObject oraz @ObservedObject zapewniają współdzielenie obiektów pomiędzy widokami</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C, D</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">3.</div>
+            <div class="question-text">Wskaż poprawne implementacje listy:</div>
+            <div class="options">
+                <div class="option correct">a. let flowers = ["fiołek", "hiacynt", "róża", "konwalia"]<br>var body: some View {<br>&nbsp;&nbsp;&nbsp;&nbsp;List(flowers, id: \.self){ f in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(f)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">b. List(){<br>&nbsp;&nbsp;&nbsp;&nbsp;ForEach(flowers.indices) {f in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(flowers[f])<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">c. List(){<br>&nbsp;&nbsp;&nbsp;&nbsp;ForEach(flowers, id: \.self) {f in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(f)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option incorrect">d. List(flowers, id: \.self){ _ in<br>&nbsp;&nbsp;&nbsp;&nbsp;Text(flower)<br>}</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C</div>
+            <div class="explanation">Opcja d jest niepoprawna, ponieważ zmienna "flower" nie jest zdefiniowana w kontekście.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">4.</div>
+            <div class="question-text">Wskaż poprawne implementacje gestu LongPress:</div>
+            <div class="options">
+                <div class="option incorrect">a. @State var color: Color = .black<br>let colors: [Color] = [.red, .blue, .yellow]<br>var body: some View {<br>&nbsp;&nbsp;&nbsp;&nbsp;Circle()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.fill(color)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.onLongPressGesture(perform: {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color = colors.randomElement()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>}</div>
+                <div class="option correct">b. onLongPressGesture(minimumDuration: 2, perform: {<br>&nbsp;&nbsp;&nbsp;&nbsp;color = colors.randomElement()!<br>})</div>
+                <div class="option incorrect">c. color = colors.randomElement() // bez wykrzyknika</div>
+            </div>
+            <div class="answer">Odpowiedź: B</div>
+            <div class="explanation">Opcja a jest niepoprawna bo brak wykrzyknika po randomElement(). Opcja c również niepoprawna z tego samego powodu.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">5.</div>
+            <div class="question-text">Wybierz poprawne stwierdzenia dotyczące separowalności modelu MVVM:</div>
+            <div class="options">
+                <div class="option correct">a. W częściowej separowalności możliwy jest bezpośredni dostęp do modelu z widoku</div>
+                <div class="option correct">b. W całkowitej separowalności istnieje bezpośredni dostęp do modelu jedynie za pomocą viewmodel</div>
+                <div class="option incorrect">c. Minimalna separowalność nie pozwala na stosowanie @State w widokach aplikacji</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">6.</div>
+            <div class="question-text">Wskaż poprawne implementacje pola do wpisania hasła, gdzie zamiast znaków pojawiają się kropki:</div>
+            <div class="options">
+                <div class="option incorrect">a. SecureField(text: $passwd, prompt: Text("Podaj hasło")){}</div>
+                <div class="option incorrect">b. SecureText("Hasło", text: $passwd)</div>
+                <div class="option incorrect">c. SecureField(text: $passwd, prompt: Text("Podaj hasło")){}</div>
+                <div class="option correct">d. SecureField("Hasło", text: $passwd)</div>
+            </div>
+            <div class="answer">Odpowiedź: D</div>
+            <div class="explanation">SecureText nie istnieje w SwiftUI. Poprawną składnią jest SecureField z tytułem jako pierwszym parametrem.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">7.</div>
+            <div class="question-text">W widoku podrzędnym, w celu wyboru koloru i przekazania go do widoku nadrzędnego można użyć:</div>
+            <div class="options">
+                <div class="option incorrect">a. ColorPicker("", selection:color) // bez $</div>
+                <div class="option correct">b. @Binding var color: Color<br>ColorPicker("", selection:$color)</div>
+                <div class="option incorrect">c. @Binding var color: Color = .white // binding nie może mieć wartości domyślnej</div>
+                <div class="option incorrect">d. @State var color: Color = .red // nie przekaże do widoku nadrzędnego</div>
+            </div>
+            <div class="answer">Odpowiedź: B</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">8.</div>
+            <div class="question-text">Wskaż poprawne stwierdzenia dotyczące gestów w SwiftUI:</div>
+            <div class="options">
+                <div class="option correct">a. Łączenie gestów może zostać zrealizowane za pomocą modyfikatora highPriorityGesture</div>
+                <div class="option correct">b. Łączenie gestów może być wykonane w tworzonej zmiennej</div>
+                <div class="option incorrect">c. Gesty, które zostaną przypisane do elementu graficznego oraz VStack są zawsze rozpoznawalne</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">9.</div>
+            <div class="question-text">Wskaż poprawne stwierdzenie dotyczące testowania w środowisku XCode:</div>
+            <div class="options">
+                <div class="option incorrect">a. Klasa do testowania jest podklasą klasy XCTest</div>
+                <div class="option correct">b. Należy wskazać co będzie testowane, poprzez dodanie @testable import przed nazwą klasy</div>
+                <div class="option incorrect">c. Należy wskazać co będzie testowane, poprzez dodanie @testable przed nazwą klasy</div>
+            </div>
+            <div class="answer">Odpowiedź: B</div>
+            <div class="explanation">Poprawna składnia to @testable import, a nie samo @testable.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">10.</div>
+            <div class="question-text">Wybierz poprawne stwierdzenia dotyczące struktur:</div>
+            <div class="options">
+                <div class="option correct">a. Struktury mogą posiadać inicjalizację danych</div>
+                <div class="option correct">b. Struktury mogą posiadać obliczeniowe zmienne</div>
+                <div class="option incorrect">c. Struktury mogą być dziedziczone</div>
+                <div class="option correct">d. Struktury zawierają zmienne lub stałe</div>
+            </div>
+            <div class="answer">Odpowiedź: B, D</div>
+            <div class="explanation">Struktury w Swift nie mogą być dziedziczone i nie mogą posiadać inicjalizacji danych - mają automatycznie generowany inicjalizator memberwise.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">11.</div>
+            <div class="question-text">Aby zmodyfikować dane typu całkowitego i przekazać je do widoku nadrzędnego, należy zastosować w widoku podrzędnym:</div>
+            <div class="options">
+                <div class="option incorrect">a. @Binding var str = ""</div>
+                <div class="option correct">b. @Binding var str</div>
+                <div class="option incorrect">c. @State var str</div>
+                <div class="option incorrect">d. @State var str = ""</div>
+            </div>
+            <div class="answer">Odpowiedź: B</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">12.</div>
+            <div class="question-text">Wybierz poprawne stwierdzenie:</div>
+            <div class="options">
+                <div class="option correct">a. SwiftUI to deklaratywny szkielet programistyczny</div>
+                <div class="option correct">b. Każdy widok może zawierać właściwość body</div>
+                <div class="option correct">c. Widok jest reprezentowany jako struktura</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">13.</div>
+            <div class="question-text">Wybierz poprawne stwierdzenia dotyczące modelu MVVM:</div>
+            <div class="options">
+                <div class="option correct">a. Model jest reprezentowany za pomocą struktur</div>
+                <div class="option incorrect">b. ViewModel jest reprezentowany za pomocą struktur</div>
+                <div class="option correct">c. Widok jest bezstanowy</div>
+            </div>
+            <div class="answer">Odpowiedź: A, C</div>
+            <div class="explanation">ViewModel zazwyczaj jest reprezentowany za pomocą klas, a nie struktur, ponieważ klasy pozwalają na zarządzanie stanem i wykorzystanie mechanizmu referencji.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">14.</div>
+            <div class="question-text">Wskaż poprawne implementacje dla elementu Picker:</div>
+            <div class="options">
+                <div class="option correct">a. @State var zwierze: String?<br>Picker("Wybierz", selection: $zwierze){<br>&nbsp;&nbsp;&nbsp;&nbsp;ForEach(zwierzeta, id: \.self){ zw in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(zw)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">b. @State var zwierze: String = ""<br>Picker("Wybierz", selection: $zwierze){<br>&nbsp;&nbsp;&nbsp;&nbsp;ForEach(zwierzeta, id: \.self){ zw in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(zw)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option incorrect">c. ForEach(zwierzeta){ // brak id: \.self</div>
+                <div class="option correct">d. Text(zw).tag(zw)</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, D</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">15.</div>
+            <div class="question-text">Cocoa Touch:</div>
+            <div class="options">
+                <div class="option correct">a. jest drugą warstwą architektury systemu iOS</div>
+                <div class="option incorrect">b. używana jest w takich zadaniach jak: wielozadaniowość, AirDrop, czy obsługa Bluetooth</div>
+                <div class="option correct">c. zawiera takie frameworki jak: UIKit, MapKit, GameKit</div>
+            </div>
+            <div class="answer">Odpowiedź: A, C</div>
+            <div class="explanation">Opcja b dotyczy Core Services, nie Cocoa Touch.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">16.</div>
+            <div class="question-text">Core Data:</div>
+            <div class="options">
+                <div class="option incorrect">a. jest lekką bazą danych</div>
+                <div class="option correct">b. zapewnia przechowywanie danych i zarządzanie nimi</div>
+                <div class="option correct">c. przechowuje dane na jednym urządzeniu lub synchronizuje te dane z wieloma urządzeniami za pomocą CloudKit</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C</div>
+            <div class="explanation">Core Data nie jest lekką bazą danych, lecz frameworkiem do zarządzania danymi.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">17.</div>
+            <div class="question-text">Model danych Core Data:</div>
+            <div class="options">
+                <div class="option correct">a. tworzony jest za pomocą edytora danych</div>
+                <div class="option correct">b. zawiera encje używane do generowania podklas ManagedObject</div>
+                <div class="option correct">c. umożliwia tworzenie relacji między danymi</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">18.</div>
+            <div class="question-text">Modalność:</div>
+            <div class="options">
+                <div class="option correct">a. pozwala wyświetlać krytyczne informacje</div>
+                <div class="option correct">b. można wywołać w postaci: alerts, activity views, share sheets, action sheets</div>
+                <div class="option incorrect">c. przedstawia zawartość w trybie długoterminowym dla użytkowników</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B</div>
+            <div class="explanation">Modalność zazwyczaj przedstawia zawartość na krótki czas i wymaga interakcji użytkownika.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">19.</div>
+            <div class="question-text">Gesty w SwiftUI:</div>
+            <div class="options">
+                <div class="option incorrect">a. są wykrywane jednocześnie, bez względu na ich liczbę</div>
+                <div class="option correct">b. aby wykryć jednocześnie gesty należy je umieścić w simultaneousGesture()</div>
+                <div class="option correct">c. można wskazać, który gest ma być wykonany przy zastosowaniu modyfikatora highPriorityGesture()</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">20.</div>
+            <div class="question-text">W aplikacji SwiftUI:</div>
+            <div class="options">
+                <div class="option incorrect">a. widok jest klasą</div>
+                <div class="option correct">b. do ułożenia stosowane są elementy VStack, HStack oraz ZStack</div>
+                <div class="option correct">c. stosowany jest model ModelViewViewModel</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C</div>
+            <div class="explanation">W SwiftUI widok jest strukturą (struct), a nie klasą.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">21.</div>
+            <div class="question-text">Wybierz poprawne stwierdzenie dotyczące aplikacji SwiftUI:</div>
+            <div class="options">
+                <div class="option incorrect">a. @State jest stosowany do modyfikowania zmiennych poza strukturą</div>
+                <div class="option correct">b. @State nie powinien być dzielony pomiędzy widokami</div>
+                <div class="option correct">c. @State jest źródłem prawdy, co oznacza, że dana zmienna zawsze ma poprawną wartość</div>
+                <div class="option correct">d. do przekazywania danych pomiędzy widokami stosowane są @Binding, @ObservedObject</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C, D</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">22.</div>
+            <div class="question-text">Wskaż poprawne stwierdzenie dotyczące testowania w środowisku XCode:</div>
+            <div class="options">
+                <div class="option incorrect">a. Klasa do testowania jest podklasą klasy XCTest</div>
+                <div class="option correct">b. Należy wskazać co będzie testowane, poprzez dodanie @testable import przed nazwą klasy</div>
+                <div class="option incorrect">c. Należy wskazać co będzie testowane, poprzez dodanie @testable przed nazwą klasy</div>
+            </div>
+            <div class="answer">Odpowiedź: C</div>
+            <div class="explanation">Poprawna składnia to @testable przed nazwą klasy, nie @testable import.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">23.</div>
+            <div class="question-text">Jaký druh/typ całkowitej i przekazać ją do widoku nadrzędnego, należy czasować w widoku podrzędnym (z którego chcemy przekazać dane):</div>
+            <div class="options">
+                <div class="option incorrect">a. @Binding var str = ""</div>
+                <div class="option correct">b. @Binding var str</div>
+                <div class="option incorrect">c. @State var str</div>
+                <div class="option incorrect">d. @State var str = ""</div>
+            </div>
+            <div class="answer">Odpowiedź: B</div>
+            <div class="explanation">@Binding nie może mieć wartości domyślnej przypisanej w deklaracji. @Binding jest deklaracją, która wskazuje, że wartość będzie przekazywana z widoku nadrzędnego i modyfikowana w widoku podrzędnym.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">24.</div>
+            <div class="question-text">Dana jest struktura Person. Wskaż poprawne instrukcje do wyświetlenia elementów tablicy (persons), której elementy są typu Person - wersja z bindingiem:</div>
+            <div class="code-block">struct Person{
+    var firstname: String
+    var lastname: String
+    var year: Int
+}</div>
+            <div class="options">
+                <div class="option incorrect">a. ForEach(0..<persons.count) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">b. ForEach(persons.indices) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: $persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option incorrect">c. ForEach(persons.indices) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">d. ForEach(0..<persons.count) { i in<br>&nbsp;&nbsp;&nbsp;&nbsp;NavigationLink(destination: PersonView(person: $persons[i])){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(persons[i].firstname)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+            </div>
+            <div class="answer">Odpowiedź: B, D</div>
+            <div class="explanation">Opcje a i c są niepoprawne, ponieważ nie używają bindingu ($) przy przekazywaniu osoby do PersonView, co jest konieczne do przekazania danych z widoku podrzędnego do głównego w przypadku modyfikacji danych.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">25.</div>
+            <div class="question-text">Wskaż poprawne implementacje dla elementu Picker - kod bez błędów składniowych:</div>
+            <div class="options">
+                <div class="option correct">a. let zwierzeta:[String] = ["pies", "kot", "mysz", "chomik"]<br>@State var zwierze: String?<br>Picker("Wybierz", selection: $zwierze){<br>&nbsp;&nbsp;&nbsp;&nbsp;ForEach(zwierzeta, id: \.self){ zw in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(zw)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option correct">b. @State var zwierze: String = ""<br>Picker("Wybierz", selection: $zwierze){<br>&nbsp;&nbsp;&nbsp;&nbsp;ForEach(zwierzeta, id: \.self){ zw in<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(zw)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+                <div class="option incorrect">c. ForEach(zwierzeta){ // brak id: \.self<br>&nbsp;&nbsp;&nbsp;&nbsp;zw in Text(zw)<br>}</div>
+                <div class="option correct">d. ForEach(zwierzeta, id: \.self){ zw in<br>&nbsp;&nbsp;&nbsp;&nbsp;Text(zw).tag(zw)<br>}</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, D</div>
+            <div class="explanation">Opcja c jest niepoprawna, ponieważ brakuje id: \.self w ForEach, co jest wymagane aby identyfikować elementy w tablicy zwierząt.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">26.</div>
+            <div class="question-text">W aplikacji iOS dla frameworku SwiftUI rozpoznawane są gesty:</div>
+            <div class="options">
+                <div class="option correct">a. UITapGestureRecognizer</div>
+                <div class="option correct">b. UIPinchGestureRecognizer</div>
+                <div class="option correct">c. UIRotationGestureRecognizer</div>
+                <div class="option correct">d. UISwipeGestureRecognizer</div>
+                <div class="option correct">e. UILongPressGestureRecognizer</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C, D, E</div>
+            <div class="explanation">Wszystkie wymienione gesty są rozpoznawane w aplikacjach iOS dla frameworku SwiftUI.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">27.</div>
+            <div class="question-text">Obsługa gestów w aplikacji UIKit obsługuje metody:</div>
+            <div class="options">
+                <div class="option correct">a. touchesBegan</div>
+                <div class="option correct">b. touchesMoved</div>
+                <div class="option correct">c. touchesEnded</div>
+                <div class="option incorrect">d. touchesDelayed</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C</div>
+            <div class="explanation">Metoda touchesDelayed nie istnieje w kontekście obsługi gestów w UIKit.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">28.</div>
+            <div class="question-text">Wybierz poprawne stwierdzenie dotyczące rozpoznawania gestów:</div>
+            <div class="options">
+                <div class="option incorrect">a. rozpoznawanie gestów ciągłe wywołuje metodę akcji dokładnie raz po rozpoznaniu gestu</div>
+                <div class="option correct">b. ciągłe rozpoznawanie gestów polega na wielokrotnym wywoływaniu metody akcji</div>
+                <div class="option correct">c. jeśli rozpoznawanie gestów rozpozna swój gest, pozostałe dotknięcia widoku zostaną anulowane</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C</div>
+            <div class="explanation">Ciągłe rozpoznawanie gestów, takie jak UIPanGestureRecognizer, wywołuje metodę akcji wielokrotnie. Jeśli gest zostanie rozpoznany, inne gesty mogą zostać anulowane.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">29.</div>
+            <div class="question-text">Widok tabeli:</div>
+            <div class="options">
+                <div class="option correct">a. UITableView prezentuje dane w co najmniej jednej kolumnie i wielu wierszach</div>
+                <div class="option correct">b. prezentuje treść w komórkach, które są obiektami UITableViewCell</div>
+                <div class="option correct">c. działa poprawnie po zdefiniowaniu protokołów UITableViewDataSource oraz UITableViewDelegate</div>
+                <div class="option correct">d. może mieć zdefiniowany nagłówek i stopkę</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C, D</div>
+            <div class="explanation">Wszystkie stwierdzenia są poprawne i dotyczą działania UITableView.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">30.</div>
+            <div class="question-text">Wskaż wymagane metody do implementacji dla widoku tabeli:</div>
+            <div class="options">
+                <div class="option incorrect">a. func numberOfSections(in tableView: UITableView) -> Int</div>
+                <div class="option correct">b. func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int</div>
+                <div class="option correct">c. func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell</div>
+                <div class="option incorrect">d. func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C</div>
+            <div class="explanation">Metody numberOfSections i titleForHeaderInSection są opcjonalne. Wymagane metody to numberOfRowsInSection i cellForRowAt.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">31.</div>
+            <div class="question-text">Wybierz poprawne stwierdzenie dotyczące aplikacji wielowidokowych UIKit:</div>
+            <div class="options">
+                <div class="option correct">a. kontroler widoków zarządza hierarchią widoków</div>
+                <div class="option correct">b. przejścia między kontrolerami widoków definiowane są za pomocą segues</div>
+                <div class="option correct">c. punkt początkowy przejścia do drugiego widoku może być programowo zmieniony</div>
+                <div class="option incorrect">d. można łączyć inicjujące przejście</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C</div>
+            <div class="explanation">Stwierdzenie d jest niejasne i nieprecyzyjnie zdefiniowane.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">32.</div>
+            <div class="question-text">Nawigacja między widokami w aplikacji SwiftUI:</div>
+            <div class="options">
+                <div class="option incorrect">a. wykonywana jest za pomocą segue</div>
+                <div class="option correct">b. jest zapewniona poprzez NavigationView</div>
+                <div class="option correct">c. może prowadzić do utworzonej struktury (widoku)</div>
+                <div class="option incorrect">d. wymaga zawsze utworzenia nowej struktury (widoku)</div>
+            </div>
+            <div class="answer">Odpowiedź: B, C</div>
+            <div class="explanation">Nawigacja w SwiftUI jest zapewniana przez NavigationView i może prowadzić do istniejącej struktury widoku. Nie jest wykonywana za pomocą segue, jak w UIKit, i nie wymaga zawsze utworzenia nowej struktury widoku.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">33.</div>
+            <div class="question-text">Ustawienie elementów jak na rysunku można otrzymać stosując:</div>
+            <div class="question-text" style="margin: 10px 0; font-style: italic;">
+                [Rysunek pokazuje niebieski prostokąt z napisem "Hello" obok i czerwone kółko poniżej]
+            </div>
+            <div class="options">
+                <div class="option incorrect">a. VStack{<br>&nbsp;&nbsp;&nbsp;&nbsp;HStack{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rectangle().fill(.blue).frame(width: 100, height: 50)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text("Hello")<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;Circle().fill(.red).frame(width: 50, height: 50)<br>}.padding(20)</div>
+                <div class="option correct">b. HStack{<br>&nbsp;&nbsp;&nbsp;&nbsp;VStack{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rectangle().fill(.blue).frame(width: 100, height: 50)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spacer()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text("Hello")<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div>
+            </div>
+            <div class="answer">Odpowiedź: B</div>
+            <div class="explanation">Układ poziomy (HStack) z pionowym stosem (VStack) zawierającym elementy ułożone wertykalnie odpowiada przedstawionemu układowi.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">34.</div>
+            <div class="question-text">Wskaż poprawne stwierdzenia dotyczące gestów w SwiftUI:</div>
+            <div class="options">
+                <div class="option correct">a. Gesty, które zostaną przypisane do elementu graficznego oraz VStack są zawsze rozpoznawalne</div>
+                <div class="option incorrect">b. Łączenie gestów może zostać zrealizowane za pomocą modyfikatora highPriorityGesture</div>
+                <div class="option correct">c. Łączenie gestów może być wykonane w tworzonej zmiennej</div>
+            </div>
+            <div class="answer">Odpowiedź: A, C</div>
+            <div class="explanation">Gesty przypisane do elementu graficznego oraz VStack są rozpoznawalne, a łączenie gestów może być wykonane w tworzonej zmiennej.</div>
+        </div>
+
+        <div class="question">
+            <div class="question-number">35.</div>
+            <div class="question-text">Testami jednostkowymi mogą być poddawane (wlk.wb):</div>
+            <div class="options">
+                <div class="option correct">a. funkcje</div>
+                <div class="option correct">b. klasy</div>
+                <div class="option correct">c. elementy graficzne</div>
+                <div class="option correct">d. zdarzenia interfejsu użytkownika</div>
+            </div>
+            <div class="answer">Odpowiedź: A, B, C, D</div>
+            <div class="explanation">Testy jednostkowe mogą obejmować wszystkie wymienione elementy: funkcje, klasy, elementy graficzne i zdarzenia interfejsu użytkownika.</div>
+        </div>
+
+    </div>
+</body>
+</html>
